@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 function Registro({ listaCitas, setListaCitas }) {
   const [paciente, setPaciente] = useState('');
@@ -11,15 +11,15 @@ function Registro({ listaCitas, setListaCitas }) {
     e.preventDefault();
 
     const nuevaCita = {
-      Paciente: paciente,
-      Doctor: doctor,
-      Fecha: fecha,
-      Especialidad: especialidad,
-      Sede: sede
+      paciente,
+      doctor,
+      fecha,
+      especialidad,
+      sede,
     };
 
     setListaCitas([...listaCitas, nuevaCita]);
-
+    // Clear form inputs
     setPaciente('');
     setDoctor('');
     setFecha('');
@@ -30,12 +30,63 @@ function Registro({ listaCitas, setListaCitas }) {
   return (
     <form onSubmit={registrarCita} className="page-section">
       <h2>Registrar Cita</h2>
-      <input type="text" placeholder="Paciente" value={paciente} onChange={e => setPaciente(e.target.value)} required />
-      <input type="text" placeholder="Doctor" value={doctor} onChange={e => setDoctor(e.target.value)} required />
-      <input type="datetime-local" value={fecha} onChange={e => setFecha(e.target.value)} required />
-      <input type="text" placeholder="Especialidad" value={especialidad} onChange={e => setEspecialidad(e.target.value)} required />
-      <input type="text" placeholder="Sede" value={sede} onChange={e => setSede(e.target.value)} required />
-      <button type="submit" className="btn btn-primary">Registrar</button>
+      <div className="form-group">
+        <label htmlFor="paciente">Paciente</label>
+        <input
+          type="text"
+          id="paciente"
+          placeholder="Nombre del paciente"
+          value={paciente}
+          onChange={(e) => setPaciente(e.target.value)}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="doctor">Doctor</label>
+        <input
+          type="text"
+          id="doctor"
+          placeholder="Nombre del doctor"
+          value={doctor}
+          onChange={(e) => setDoctor(e.target.value)}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="fecha">Fecha y Hora</label>
+        <input
+          type="datetime-local"
+          id="fecha"
+          value={fecha}
+          onChange={(e) => setFecha(e.target.value)}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="especialidad">Especialidad</label>
+        <input
+          type="text"
+          id="especialidad"
+          placeholder="Ej. Cardiología"
+          value={especialidad}
+          onChange={(e) => setEspecialidad(e.target.value)} // Fixed: Changed setPaciente to setEspecialidad
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="sede">Sede</label>
+        <input
+          type="text"
+          id="sede"
+          placeholder="Ej. Clínica Central"
+          value={sede}
+          onChange={(e) => setSede(e.target.value)}
+          required
+        />
+      </div>
+      <button type="submit" className="btn btn-primary">
+        Registrar
+      </button>
     </form>
   );
 }

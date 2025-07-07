@@ -1,32 +1,27 @@
-import { useState, useEffect } from "react";
-import Consulta from "./CitasComponents/Consulta"
-import Registro from "./CitasComponents/Registro"
+import { useState, useEffect } from 'react';
+import Consulta from './CitasComponents/Consulta';
+import Registro from './CitasComponents/Registro';
 
 function Citas() {
-    const [listaCitas, setListaCitas] = useState([]);
+  const [listaCitas, setListaCitas] = useState([]);
 
-    // Cargar citas desde localStorage al iniciar
-    useEffect(() => {
-        const citasGuardadas = JSON.parse(localStorage.getItem("listaCitas")) || [];
-        setListaCitas(citasGuardadas);
-    }, []);
+  // Load citas from localStorage on mount
+  useEffect(() => {
+    const citasGuardadas = JSON.parse(localStorage.getItem('listaCitas')) || [];
+    setListaCitas(citasGuardadas);
+  }, []);
 
-    // Guardar automáticamente en localStorage si cambia listaCitas
-    useEffect(() => {
-        localStorage.setItem("listaCitas", JSON.stringify(listaCitas));
-    }, [listaCitas]);
+  // Save to localStorage when listaCitas changes
+  useEffect(() => {
+    localStorage.setItem('listaCitas', JSON.stringify(listaCitas));
+  }, [listaCitas]);
 
-
-    return (
-        <>
-            <div className="citas-container">
-                <Registro listaCitas={listaCitas} setListaCitas={setListaCitas} />
-                <Consulta listaCitas={listaCitas} />
-            </div>
-        </>
-    )
-
-
+  return (
+    <div className="citas-container">
+      <Registro listaCitas={listaCitas} setListaCitas={setListaCitas} />
+      <Consulta listaCitas={listaCitas} />
+    </div>
+  );
 }
 
-export default Citas
+export default Citas;
