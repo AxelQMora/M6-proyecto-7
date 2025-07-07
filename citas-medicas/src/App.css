@@ -321,22 +321,87 @@ section h2 {
   font-size: 1.1rem;
 }
 
-/* --- ESTILOS ADICIONALES PARA LA NAVEGACIÓN ACTIVA --- */
+/* --- ESTILOS PARA LA PÁGINA DE CITAS --- */
 
-/* Estilo para el enlace de la página actual */
-.nav-menu Link.active {
-  color: #0d47a1; /* El color azul principal para destacarlo */
-  font-weight: 700; /* Un poco más de grosor para que resalte */
-  position: relative;
+/* Contenedor principal que divide la pantalla en dos */
+.citas-container {
+  display: flex;
+  min-height: calc(100vh - 70px); /* Resta la altura del header si existe */
+  margin-top: 70px; /* Espacio para el header fijo */
 }
 
-/* Opcional: añade una línea sutil debajo del enlace activo */
-.nav-menu Link.active::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #1e88e5;
+/* Estilo para cada una de las mitades de la página */
+.page-section {
+  flex: 1; /* Cada sección ocupa la misma cantidad de espacio */
+  padding: 2rem 3rem;
+  background-color: #ffffff;
+  overflow-y: auto; /* Permite scroll si el contenido es muy largo */
+}
+
+/* Borde para separar las dos secciones */
+.page-section:first-child {
+  border-right: 1px solid #e0e0e0;
+  background-color: #f4f7f6; /* Un color ligeramente diferente para el formulario */
+}
+
+.page-section h2 {
+  text-align: left; /* Alineamos los títulos a la izquierda */
+  margin-bottom: 2rem;
+}
+
+/* --- ESTILOS PARA LA LISTA DE CONSULTAS --- */
+.citas-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.citas-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.citas-list li:hover {
+  background-color: #f4f7f6;
+}
+
+.citas-list .cita-paciente {
+  font-weight: 600;
+  color: #333;
+}
+
+.citas-list .cita-fecha {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* Ajustamos el botón secundario para que sea más pequeño */
+.citas-list .btn-secondary {
+  padding: 0.4rem 0.8rem;
+  font-weight: 600;
+}
+
+
+/* --- ESTILOS PARA EL DETALLE DE LA CITA --- */
+.cita-detalle {
+  margin-top: 2rem;
+  animation: fadeIn 0.5s ease; /* Pequeña animación de entrada */
+}
+
+.cita-detalle h3 {
+  margin-bottom: 1rem;
+  color: #0d47a1;
+}
+
+.cita-detalle p {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
